@@ -55,7 +55,7 @@ module Twitter
       # @see http://mislav.uniqpath.com/2011/07/faraday-advanced-http/
       # @return [Faraday::RackBuilder]
       def middleware
-        @middleware ||= Faraday::RackBuilder.new do |faraday|
+        @middleware ||= Faraday::Builder.new do |faraday|
           # Convert file uploads to Faraday::UploadIO objects
           faraday.request :multipart_with_file
           # Checks for files in the payload, otherwise leaves everything untouched

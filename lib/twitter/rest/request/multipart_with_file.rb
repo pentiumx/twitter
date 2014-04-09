@@ -10,11 +10,11 @@ module Twitter
         PNG_REGEX = /\.png$/i
 
         def call(request)
-          request.body.each do |key, value|
+          request[:body].each do |key, value|
             if value.respond_to?(:to_io)
-              request.body[key] = Faraday::UploadIO.new(value, mime_type(value.path), value.path)
+              request[:body][key] = Faraday::UploadIO.new(value, mime_type(value.path), value.path)
             end
-          end if request.body.is_a?(::Hash)
+          end if request[:body].is_a?(::Hash)
           @app.call(request)
         end
 

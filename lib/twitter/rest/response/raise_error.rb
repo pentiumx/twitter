@@ -6,7 +6,7 @@ module Twitter
     module Response
       class RaiseError < Faraday::Response::Middleware
         def on_complete(response)
-          status_code = response.status.to_i
+          status_code = response[:status].to_i
           klass = Twitter::Error.errors[status_code]
           if klass
             error = if klass == Twitter::Error::Forbidden

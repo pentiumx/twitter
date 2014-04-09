@@ -17,7 +17,7 @@ module Twitter
         end
 
         def on_complete(response)
-          response.body = parse(response.body) if respond_to?(:parse) && !unparsable_status_codes.include?(response.status)
+          response[:body] = parse(response[:body]) if respond_to?(:parse) && !unparsable_status_codes.include?(response[:status])
         end
 
         def unparsable_status_codes
