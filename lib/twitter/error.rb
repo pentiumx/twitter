@@ -36,7 +36,7 @@ module Twitter
       # @param response [Faraday::Response]
       # @return [Twitter::Error]
       def from_response(response)
-        message, code = parse_error(response.body)
+        message, code = parse_error(response[:body])
         new(message, response.response_headers, code)
       end
 
