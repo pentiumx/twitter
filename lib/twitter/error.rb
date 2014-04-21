@@ -37,7 +37,7 @@ module Twitter
       # @return [Twitter::Error]
       def from_response(response)
         message, code = parse_error(response[:body])
-        new(message, response.response_headers, code)
+        new(message, response[:response_headers], code)
       end
 
       # @return [Hash]
